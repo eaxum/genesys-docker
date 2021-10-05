@@ -14,11 +14,12 @@ RUN pip install --upgrade pip wheel setuptools \
     && pip install genesys==${GENESYS_VERSION} \
     && apk del .build-deps
 
-RUN adduser -D svnedge
+RUN adduser -D eaxum
 
-RUN chown -R svnedge:svnedge /usr/local/lib/python3.7/
+RUN chown -R eaxum:eaxum /usr/local/lib/python3.7/
 
-USER svnedge
+USER eaxum
+
 
 ENV GENESYS_FOLDER /usr/local/lib/python3.7/site-packages/genesys
 WORKDIR ${GENESYS_FOLDER}
