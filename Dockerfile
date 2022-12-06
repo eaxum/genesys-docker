@@ -10,7 +10,7 @@ RUN apk add --no-cache --virtual .build-deps make musl-dev gcc g++ libffi-dev
 
 ARG GENESYS_VERSION
 
-RUN pip install --upgrade pip wheel setuptools \
+RUN pip install --upgrade pip wheel setuptools future-fstrings \
     && pip install genesys==${GENESYS_VERSION} \
     && apk del .build-deps
 
