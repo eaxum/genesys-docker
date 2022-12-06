@@ -6,7 +6,7 @@ USER root
 
 RUN apk add --no-cache subversion
 
-RUN apk add --no-cache --virtual .build-deps make musl-dev gcc g++ libffi-dev git
+RUN apk add --no-cache --virtual .build-deps make musl-dev gcc g++ libffi-dev git cmake
 
 ARG GENESYS_VERSION
 
