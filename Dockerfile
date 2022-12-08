@@ -4,7 +4,7 @@ LABEL maintainer="Aderemi Adesada <adesadaaderemi@gmail.com>"
 
 USER root
 
-RUN apt-get install --no-cache subversion
+RUN apt-get install --no-install-recommends -q -y subversion
 
 RUN apt-get install --no-install-recommends -q -y make musl-dev gcc g++ libffi-dev
 
