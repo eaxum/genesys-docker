@@ -6,13 +6,13 @@ USER root
 
 RUN apt-get install --no-install-recommends -q -y subversion
 
-RUN apt-get install --no-install-recommends -q -y make musl-dev gcc g++ libffi-dev
+RUN apt-get install --no-install-recommends -q -y make gcc g++ libffi-dev
 
 ARG GENESYS_VERSION
 
 RUN pip install --upgrade pip wheel setuptools \
     && pip install genesys==${GENESYS_VERSION} \
-    && apt-get purge -y make musl-dev gcc g++ libffi-dev \
+    && apt-get purge -y make gcc g++ libffi-dev \
     && apt-get autoremove -y \
     && apt-get clean && \
     && rm -rf /var/lib/apt/lists/*
