@@ -17,7 +17,7 @@ RUN pip install --upgrade pip wheel setuptools \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN adduser -D eaxum
+RUN useradd --defaults eaxum
 
 RUN chown -R eaxum:eaxum /usr/local/lib/python3.10/
 
