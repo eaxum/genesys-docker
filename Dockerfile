@@ -14,7 +14,7 @@ RUN pip install --upgrade pip wheel setuptools \
     && pip install genesys==${GENESYS_VERSION} \
     && apt-get purge -y make gcc g++ libffi-dev \
     && apt-get autoremove -y \
-    && apt-get clean && \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -D eaxum
