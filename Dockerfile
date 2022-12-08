@@ -6,7 +6,7 @@ USER root
 
 RUN apt-get install --no-cache subversion
 
-RUN apt-get install --no-install-recommends -q -y --no-cache make musl-dev gcc g++ libffi-dev
+RUN apt-get install --no-install-recommends -q -y make musl-dev gcc g++ libffi-dev
 
 ARG GENESYS_VERSION
 
