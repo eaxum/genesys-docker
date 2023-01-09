@@ -10,6 +10,10 @@ RUN apt-get install --no-install-recommends -q -y make gcc g++ libffi-dev
 
 ARG GENESYS_VERSION
 
+COPY install_deps.sh ./install_deps.sh
+
+RUN ./install_deps.sh --no-sudo
+
 RUN pip install --upgrade pip wheel setuptools \
     && pip install genesys==${GENESYS_VERSION} \
     && apt-get purge -y make gcc g++ libffi-dev \
