@@ -21,7 +21,8 @@ RUN apt-get update && apt-get install -y \
 	libfontconfig1 \ 
 	libxrender1 \ 
 	libgl1-mesa-glx \ 
-	xz-utils
+	xz-utils \
+    libxkbcommon-x11-0
 
 ARG GENESYS_VERSION
 
