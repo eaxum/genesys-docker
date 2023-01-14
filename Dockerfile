@@ -8,11 +8,24 @@ RUN apt-get install --no-install-recommends -q -y subversion
 
 RUN apt-get install --no-install-recommends -q -y make gcc g++ libffi-dev
 
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+	wget \ 
+	libopenexr-dev \ 
+	bzip2 \ 
+	build-essential \ 
+	zlib1g-dev \ 
+	libxmu-dev \ 
+	libxi-dev \ 
+	libxxf86vm-dev \ 
+	libfontconfig1 \ 
+	libxrender1 \ 
+	libgl1-mesa-glx \ 
+	xz-utils
+
 ARG GENESYS_VERSION
 
-COPY install_deps.sh ./install_deps.sh
-
-RUN ./install_deps.sh --no-sudo
+RUN chown -R eaxum:eaxum /usr/local/lib/python3.10/
 
 RUN pip install --upgrade pip wheel setuptools \
     && pip install genesys==${GENESYS_VERSION} \
