@@ -25,8 +25,6 @@ RUN apt-get update && apt-get install -y \
 
 ARG GENESYS_VERSION
 
-RUN chown -R eaxum:eaxum /usr/local/lib/python3.10/
-
 RUN pip install --upgrade pip wheel setuptools \
     && pip install genesys==${GENESYS_VERSION} \
     && apt-get purge -y make gcc g++ libffi-dev \
