@@ -9,7 +9,7 @@ RUN apt-get install --no-install-recommends -q -y subversion
 RUN apt-get install --no-install-recommends -q -y make gcc g++ libffi-dev
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install --no-install-recommends -q -y \
 	libxi-dev \ 
 	libxxf86vm-dev \
     libxkbcommon-x11-0 \
