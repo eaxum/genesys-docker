@@ -23,6 +23,20 @@ RUN pip install --upgrade pip wheel setuptools \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
+    && mkdir temp_addon \
+    && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/io_anim_bvh/ temp_addon \
+    && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/io_curve_svg/ temp_addon \
+    && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/io_mesh_ply/ temp_addon \
+    && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/io_mesh_stl/ temp_addon \
+    && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/io_mesh_uv_layout/ temp_addon \
+    && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/io_scene_obj/ temp_addon \
+    && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/io_scene_fbx/ temp_addon \
+    && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/io_scene_gltf2/ temp_addon \
+    && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/io_scene_x3d/ temp_addon \
+    && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/pose_library/ temp_addon \
+	&& rm /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/* \
+    && mv temp_addon/* /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/ \
+    && rm -R temp_addon\
 	&& useradd eaxum \
 	&& chown -R eaxum:eaxum /usr/local/lib/python3.10/
 
