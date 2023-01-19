@@ -22,11 +22,9 @@ RUN pip install --upgrade pip wheel setuptools \
     && apt-get purge -y make gcc g++ libffi-dev \
     && apt-get autoremove -y \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN useradd eaxum
-
-RUN chown -R eaxum:eaxum /usr/local/lib/python3.10/
+    && rm -rf /var/lib/apt/lists/* \
+	&& useradd eaxum \
+	&& chown -R eaxum:eaxum /usr/local/lib/python3.10/
 
 USER eaxum
 
