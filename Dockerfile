@@ -10,19 +10,10 @@ RUN apt-get install --no-install-recommends -q -y make gcc g++ libffi-dev
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-	wget \ 
-	libopenexr-dev \ 
-	bzip2 \ 
-	build-essential \ 
-	zlib1g-dev \ 
-	libxmu-dev \ 
 	libxi-dev \ 
-	libxxf86vm-dev \ 
-	libfontconfig1 \ 
-	libxrender1 \ 
-	libgl1-mesa-glx \ 
-	xz-utils \
-    libxkbcommon-x11-0
+	libxxf86vm-dev \
+    libxkbcommon-x11-0 \
+	&& rm -rf /var/lib/apt/lists/*
 
 ARG GENESYS_VERSION
 
