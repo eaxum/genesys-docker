@@ -34,7 +34,7 @@ RUN pip install --upgrade pip wheel setuptools \
     && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/io_scene_gltf2/ temp_addon \
     && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/io_scene_x3d/ temp_addon \
     && mv /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/pose_library/ temp_addon \
-	&& rm /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/* \
+	&& rm -R /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/* \
     && mv temp_addon/* /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/ \
     && rm -R temp_addon\
 	&& useradd eaxum \
