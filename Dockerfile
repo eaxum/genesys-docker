@@ -42,6 +42,7 @@ RUN pip install --upgrade pip wheel setuptools \
 
 FROM python:3.10
 COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Install dependencies
 RUN apt-get update && apt-get install --no-install-recommends -q -y \
