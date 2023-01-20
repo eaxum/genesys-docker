@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.10 as builder
 
 LABEL maintainer="Aderemi Adesada <adesadaaderemi@gmail.com>"
 
@@ -8,12 +8,12 @@ RUN apt-get install --no-install-recommends -q -y subversion
 
 RUN apt-get install --no-install-recommends -q -y make gcc g++ libffi-dev
 
-# Install dependencies
-RUN apt-get update && apt-get install --no-install-recommends -q -y \
-	libxi-dev \ 
-	libxxf86vm-dev \
-    libxkbcommon-x11-0 \
-	&& rm -rf /var/lib/apt/lists/*
+# # Install dependencies
+# RUN apt-get update && apt-get install --no-install-recommends -q -y \
+# 	libxi-dev \ 
+# 	libxxf86vm-dev \
+#     libxkbcommon-x11-0 \
+# 	&& rm -rf /var/lib/apt/lists/*
 
 ARG GENESYS_VERSION
 
@@ -37,6 +37,18 @@ RUN pip install --upgrade pip wheel setuptools \
 	&& rm -R /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/* \
     && mv temp_addon/* /usr/local/lib/python3.10/site-packages/bpy/3.4/scripts/addons/ \
     && rm -R temp_addon\
+	&& useradd eaxum \
+	&& chown -R eaxum:eaxum /usr/local/lib/python3.10/
+
+FROM python:3.10
+COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
+
+# Install dependencies
+RUN apt-get update && apt-get install --no-install-recommends -q -y \
+	libxi-dev \ 
+	libxxf86vm-dev \
+    libxkbcommon-x11-0 \
+	&& rm -rf /var/lib/apt/lists/* \
 	&& useradd eaxum \
 	&& chown -R eaxum:eaxum /usr/local/lib/python3.10/
 
