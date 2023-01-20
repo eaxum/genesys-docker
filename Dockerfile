@@ -4,7 +4,7 @@ LABEL maintainer="Aderemi Adesada <adesadaaderemi@gmail.com>"
 
 USER root
 
-RUN apt-get install --no-install-recommends -q -y subversion
+# RUN apt-get install --no-install-recommends -q -y subversion
 
 RUN apt-get install --no-install-recommends -q -y make gcc g++ libffi-dev
 
@@ -45,6 +45,7 @@ COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/pytho
 
 # Install dependencies
 RUN apt-get update && apt-get install --no-install-recommends -q -y \
+	subversion\
 	libxi-dev \ 
 	libxxf86vm-dev \
     libxkbcommon-x11-0 \
