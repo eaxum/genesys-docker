@@ -17,8 +17,11 @@ RUN apt-get install --no-install-recommends -q -y make gcc g++ libffi-dev
 
 ARG GENESYS_VERSION
 
+COPY genesys-0.1.8-py3-none-any.whl ./genesys-0.1.8-py3-none-any.whl
+
 RUN pip install --upgrade pip wheel setuptools \
-    && pip install genesys==${GENESYS_VERSION} \
+    && pip install genesys-0.1.8-py3-none-any.whl \
+    # && pip install genesys==${GENESYS_VERSION} flask_fs2 flask_caching flask_sqlalchemy sqlalchemy_utils sqlalchemy psycopg2-binary python-slugify\
     && apt-get purge -y make gcc g++ libffi-dev \
     && apt-get autoremove -y \
     && apt-get clean \
@@ -53,9 +56,13 @@ RUN apt-get update && apt-get install --no-install-recommends -q -y \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& useradd eaxum \
 	&& chown -R eaxum:eaxum /usr/local/lib/python3.10/
-
-USER eaxum
-
+    
+RUN chown -R eaxum:eaxum /usr/local
+RUN chown -R eaxum:eaxum /opt
+COPY init_genesys.sh ./init_genesys.sh
+COPY upgrade_genesys.sh ./upgrade_genesys.sh
 
 ENV GENESYS_FOLDER /usr/local/lib/python3.10/site-packages/genesys
 WORKDIR ${GENESYS_FOLDER}
+
+USER eaxum
